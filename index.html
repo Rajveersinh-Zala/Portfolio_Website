@@ -20,6 +20,7 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }   
 
         /* Header Styles */
@@ -476,40 +477,152 @@
             animation: typing 3s steps(100000, end), blink-caret 0.75s step-end infinite;
         }
         #discussText {
-  cursor: pointer;
-  color: rgb(21, 71, 179);
-}
+            cursor: pointer;
+            color: rgb(21, 71, 179);
+        }
 
-/* Style for clickable spans inside the discuss text */
-#discussText span {
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
-}
-#toast {
-  visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: #00266d;
-  color: white;
-  text-align: center;
-  border-radius: 2px;
-  padding: 16px;
-  position: fixed;
-  z-index: 1;
-  left: 50%;
-  bottom: 30px;
-  font-size: 17px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transition: opacity 0.5s, visibility 0s linear 0.5s;
-}
+        /* Style for clickable spans inside the discuss text */
+        #discussText span {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #00266d;
+            color: white;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0s linear 0.5s;
+        }
 
-#toast.show {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s, visibility 0s;
-}
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.5s, visibility 0s;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 1024px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .project-card {
+                height: auto;
+                min-height: 530px;
+            }
+            
+            .modal-content-wrapper {
+                flex-direction: column;
+            }
+            
+            .carousel {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image img {
+                margin-top: 0;
+                transform: none;
+                width: 50%;
+                max-width: 200px;
+            }
+            
+            .about-image img:hover {
+                transform: scale(1.05);
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .project-card {
+                min-height: auto;
+                height: auto;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+            
+            .modal-text {
+                margin-top: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr 1fr ;
+            }
+            
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image img {
+                width: 50%;
+            }
+            .project-card {
+                grid-template-columns: 0.45rem 0.45rem;
+            }
+            .btn {
+                padding: 4px 8px;
+                font-size: 0.45rem;
+            }
+            
+            .tools-header i {
+                font-size: 0.75rem;
+            }
+            
+            .tools-header span {
+                font-size: 0.6rem;
+            }
+            
+            .project-card h3 {
+                font-size: 0.6rem ;
+            }
+            
+            .project-card p {
+                font-size: 0.45rem  ;
+            }
+            
+            .modal-text h3 {
+                font-size: 0.7rem;
+            }
+            
+            .modal-text ul li {
+                font-size: 0.45rem;
+            }
+            
+            .skills-used span {
+                font-size: 0.4rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -522,7 +635,7 @@
 
     <!-- About Section -->
     <section id="about" class="section">
-        <div class="container">
+        <div class="container"> 
             <div class="about-content">
                 <div class="about-text">
                     <h2 style="color: #333;">About Me</h2>
@@ -595,7 +708,7 @@
                 <div class="skill-card">
                     <i class="fab fa-python"></i>
                     <h3>Python</h3>
-                    <p>Proficient in data manipulation and analysis using Python libraries.</p>
+                    <p>Proficient in automation, web-scrapping and basic analysis using Python libraries.</p>
                     <div class="star-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -861,7 +974,6 @@ function copyText(text) {
             // Show the modal
             modal.style.display = "flex";
         }
-
         // Add event listeners to all "View Project" buttons
         document.querySelectorAll(".view-project").forEach(button => {
             button.addEventListener("click", (e) => {
