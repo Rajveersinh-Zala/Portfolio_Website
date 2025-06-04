@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }   
+
+        /* Header Styles */
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: top;
+            gap: 40px;
+            color: #575656;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .about-text {
+            flex: 1;
+            text-align: justify;
+        }
+
+        .about-image {
+            flex: 0.5;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 70%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 90px;
+            transform: translateY(-20%);
+        }
+        /* Hover effect to enhance the pop-out */
+        .about-image img:hover {
+            transform: translateY(-20%) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Skill Card Icons */
+        .skill-card i {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        /* Smaller size for stars */
+        .skill-card .star-rating i {
+            font-size: 1rem;
+            margin: 0 2px;
+        }
+
+        /* Card 1: Green */
+        .skill-card:nth-child(1):hover i {
+            color: rgb(4, 158, 4);
+        }
+
+        /* Card 2: Blue */
+        .skill-card:nth-child(2):hover i {
+            color: rgb(55, 55, 245);
+        }
+
+        /* Card 3: Red */
+        .skill-card:nth-child(3):hover i {
+            color: #9C27B0;
+        }
+
+        /* Card 4: Orange */
+        .skill-card:nth-child(4):hover i {
+            color: orange;
+        }
+
+        .skill-card h3 {
+            margin: 10px 0;
+        }
+
+        .skill-card p {
+            color: #555;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .experience-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+          
+        }
+
+        /* Add the animated border effect */
+        @property --angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        .experience-card::after,
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-image: conic-gradient(from var(--angle), transparent 40%,Red, Orange, Yellow, Green, Cyan, Blue, Indigo, Violet, Purple);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            padding: 3px;
+            border-radius: 10px;
+            animation: 3s spin linear infinite;
+        }
+
+        .experience-card::before {
+            filter: blur(1.5rem);
+            opacity: 0.5;
+        }
+
+        @keyframes spin {
+            from {
+                --angle: 0deg;
+            }
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        .experience-card h3 {
+            margin: 0 0 10px;
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            background: #fff;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            height: 530px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgb(107, 0, 71);
+            border: 1px solid rgba(0, 0, 0, 0.13);
+        }
+        /* Hover effect for project card icons */
+        .project-card:hover .tools-header .fa-file-excel {
+            color:  rgb(4, 158, 4);
+        }
+
+        .project-card:hover .tools-header .fa-chart-pie {
+            color: #9C27B0;
+        }
+
+        .project-card:hover .tools-header .fa-python {
+            color: orange /* Python yellow */
+        }
+        .project-card:hover .tools-header .fa-database {
+            color: rgb(55, 55, 245); /* Python yellow */
+        }
+
+        /* Tools Header Styles */
+        .tools-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .tools-header i {
+            font-size: 2rem;
+            color: #333;
+            transition: transform 0.3s ease;
+        }
+
+        .tools-header i:hover {
+            transform: scale(1.2);
+        }
+
+        .tools-header span {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .project-card img {
+            width: 100%;
+            border-radius: 0 0 10px 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card h3 {
+            margin: 15px 0 10px;
+            padding: 0 10px;
+        }
+
+        .project-card p {
+            color: #555;
+            padding: 0 10px;
+        }
+   
+        .btn {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #000000;
+            transform: translateY(-3px);
+        }
+
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 1000px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #555;
+        }
+
+        .modal-content-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 40%;
+        }
+
+        .carousel-images-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .carousel-images-container img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .modal-text {
+            flex: 1;
+        }
+
+        .modal-text h3 {
+            margin-top: 0;
+        }
+
+        .modal-text ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .modal-text ul li {
+            margin-bottom: 10px;
+        }
+
+        .skills-used {
+            margin-top: 20px;
+        }
+
+        .skills-used span {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .skills-used span:hover {
+            transform: scale(1.1);
+        }
+
+        /* Custom scrollbar for carousel */
+        .carousel-images-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .carousel-images-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .carousel-images-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        .carousel-images-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ddd;
+            transform: translateY(-3px);
+        }
+        
+        /* Typing Animation */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color:transparent
+            }
+            50% {
+                border-color: #333; /* Change to match your text color */
+            }
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 0.15em solid #333; /* Cursor style */
+            animation: typing 3s steps(100000, end), blink-caret 0.75s step-end infinite;
+        }
+        #discussText {
+  cursor: pointer;
+  color: rgb(21, 71, 179);
+}
+
+/* Style for clickable spans inside the discuss text */
+#discussText span {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #00266d;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0s linear 0.5s;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0s;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+           <h1><span class="typing-text">Rajveersinh Zala</span></h1>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 style="color: #333;">About Me</h2>
+                    <p>
+  I turn raw data into meaningful insights that help businesses grow, optimize operations, and make smarter decisions. Whether it's automation using Python or Advance Excel, building interactive dashboards, or deep-dive analysis — I simplify complex tasks and deliver high-impact results with minimal manual effort from your side.
+</p>
+
+<p>
+  I love working with numbers and uncovering stories hidden in data. My goal is to help you upscale your business by enhancing how you use and understand your data — transforming it from scattered figures into clear, confident decisions.
+</p>
+
+<p>
+  I've completed several successful projects and am always eager to take on more.</p>
+  <p>
+  Open for opportunities — let's turn your data into growth. <br>
+  <span id="discussText" onclick="revealContact()">🔍Let's Discuss</span>
+  <div id="toast"></div>
+
+
+</p>
+   </div>
+                <div class="about-image">
+                    <img src="images/Profile_Photo.png" alt="Your Photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-file-excel"></i>
+                    <h3>Excel</h3>
+                    <p>Proficient in data analysis, pivot tables, advanced formulas and VBA Language in Excel.</p>
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                    <p>Experienced in querying and managing the relational databases.</p>
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Data Visualization</h3>
+                    <p>Skilled in creating dashboards using tools like Tableau and Power BI.</p>
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Proficient in data manipulation and analysis using Python libraries.</p>
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h3>DEO & Analyst</h3>
+                    <p class="company">Income Tax Office, Rajkot</p>
+                    <p class="duration">July 2024 - April 2025</p>
+                    <ul>
+                        <li>Developed an automated file management system using Python, streamlining daily operations.</li>
+                        <li>Integrated advanced Exceltools for dynamic tracking, reporting, and managing case statuses.</li>
+                        <li>Automated monthly reporting processes using Excel.</li>
+                    </ul>
+                </div>
+                <div class="experience-card">
+                    <h3>Google Data Analyst Lead</h3>
+                    <p class="company">Google Developer Student Club</p>
+                    <p class="duration">July 2023 - June 2024</p>
+                    <ul>
+                       <li>Led a 36-hour hackathon, overseeing complete data management, team coordination, and event organization.</li>
+                       <li>Collaborated on real-time project development opportunities within the college environment.</li>
+                       <li>Organized and conducted seminars on Excel and Power BI for students.</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-card"
+                     data-description="During my time at GDSC, I played a crucial role in managing data for a 48-hour inter-city hackathon, ensuring smooth operations for participants, team members allocation and organizers. My approach involved automating workflows, real-time data processing and managing, and optimizing the use of data—all within Excel."
+                     data-bullet-points='["Automated data extraction from google sheet to Excel", "ETL process in Power Query and Excel","VB script for some TDS tasks","Created visual appealing dashboard to get a clear view", "QR code generated for each members to scan and get details in excelsheet.\n(To take attendence using excel)"]'
+                     data-skills='["Lookups", "Power Query", "VBA", "Pivot Tables","Conditional formatting","formulas & functions","API integration"]'
+                     data-images='["images/P1/1.png", "images/P1/2.png", "images/P1/3.png", "images/P1/4.png", "images/P1/5.png", "images/P1/6.png", "images/P1/7.png", "images/P1/8.png"]'>
+                    <div class="tools-header">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <img src="images/P1/1.0png" style="height: 230px; width: 390px;">
+                    <h3>Hackathon Data Management System</h3>
+                    <p>Created an interactive dashboard in Excel to visualize trends and KPIs for our Intercity Hackathon of 48 hours.</p>
+                    <a href="#" class="btn view-project">View Project</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card"
+                     data-description="This model helps with money and risk management. Just enter your capital, entry price, and stop loss. It calculates the ideal quantity per trade so that even with daily losses, your capital lasts for a month—maximizing strategy and probability control."
+                     data-bullet-points='["Defines which Index we should keep an eye today (changes everyday).", "If you have Rs.1,00,000 as a starting amount you will have Rs.86,49,756 at the end of the year after removing charges. (50% profit every month)", "User selects the index, enters premium and exit price, and the model auto-calculates quantity based on monthly capital—ensuring capital only erodes after two losses per day for an entire month.","Having 3 month live data as a proof of stratergy.","Established Power BI phone UI for tracking and analyzing."]'
+                     data-skills='["Advance Excel", "Formulas & Function", "Data Visualization", "Macros","Power Query","Power BI","Data Modelling","DAX","Personlized KPI"]'
+                     data-images='["images/P2/1.png", "images/P2/2.png", "images/P2/3.png", "images/P2/4.png", "images/P2/5.png", "images/P2/6.png", "images/P2/7.png", "images/P2/8.png", "images/P2/9.png"]'>
+                    <div class="tools-header">
+                        <i class="fas fa-file-excel"></i>
+                        <span>+</span>
+                        <i class="fas fa-chart-pie"></i> 
+                    </div>
+                    <img src="images/P2/2.0.png" style="height: 220px; width: 390px;">
+                        <h3>GreenStack Financial Model</h3>
+                        <p>Created personalized Financial Model of Option Trading with the help of Excel and Power BI generating <span style="color:rgb(6, 179, 6);">+50% profit</span> every month.</p>
+                        <a href="#" class="btn view-project">View Project</a>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card"
+                     data-description="Combined data from multiple folders — Enrollment, Registration, and Result — each containing monthly files. Cleaned and organized the messy data using Power BI, and built a unified dashboard displaying KPIs and complete insights in a single view."
+                     data-bullet-points='["Transformed, Cleaned and connected multiple csv files of every month from different folders.","Created unique columns for data dependencies and table relationships","Used data and theme based on college requirements","Structured the data into clear categories","Used custom functions and DAX to maintain consistency and organization"]'
+                     data-skills='["Data Modeling","ETL Processes","Data Cleaning","Data Visualization","Power BI","Excel","DAX","Power Query","Data Integration","Report Automation"]'
+                     data-images='["images/P3/2.png", "images/P3/3.png", "images/P3/4.png", "images/P3/5.png", "images/P3/6.png", "images/P3/7.png", "images/P3/8.png"]'>
+                    <div class="tools-header">
+                        <i class="fas fa-file-excel"></i>
+                        <span>+</span>
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <img src="images/P3/1.png" style="height: 220px; width: 390px;">
+                    <h3>College Internal Data Tracking & Management</h3>
+                    <p>Created Dashboard for Internal College Program having mulitple Courses</p>
+                    <a href="#" class="btn view-project">View Project</a>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card"
+                     data-description="This project involved analyzing sales data to identify trends and opportunities. The dashboard was created using Tableau and integrated with live data sources."
+                     data-bullet-points='["Analyzed sales data to identify growth opportunities.", "Created interactive dashboards using Tableau.", "Automated monthly reporting processes using Python."]'
+                     data-skills='["Tableau", "Python", "Data Visualization", "Excel"]'
+                     data-images='["Python.png", "Excel.png", "image3.jpg"]'>
+                    <div class="tools-header">
+                       
+                        <i class="fas fa-database"></i>   
+                
+                    </div>
+                    <img src="images/P4/1.0.png" style="height: 220px; width: 390px;">
+                    <h3>E-Commerce Data Analysis</h3>
+                    <p>Identifying trends and patterns in data through SQL to uncover insights that can boost customer engagement and overall business performance.</p>     
+                    <a href="Queries_Page.html" class="btn"> Queries</a>
+                </div>
+                <!-- Project 5 -->
+                <div class="project-card"
+                    data-description="In my previous job, I was assigned the task of checking the status of multiple case files daily on the ITAT case satus website. Since the file list was provided in Excel, I automated the entire process using a Python script to save time and reduce manual effort."
+                    data-bullet-points='["Automatically opens the ITAT website and fills the form based on Excel input","Uses speech recognition to handle CAPTCHA, which cannot be automated traditionally","Searches for case details, extracts key information, and downloads the PDF if available","Updates the Excel sheet with scraped data like case title, appellant, respondent, and date of order"]'
+                    data-images='["images/P5/1.png", "images/P5/2.png", "images/P5/3.png", "images/P5/7.png" ,"images/P5/4.png", "images/P5/5.png", "images/P5/6.png"]'
+                    data-skills='["Python", "Web Automation", "Speech Recognition", "Excel", "Selenium", "Data Extraction","Web Driver"]'>
+                    <div class="tools-header">
+                        <i class="fas fa-file-excel"></i>
+                        <span>+</span>
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <img src="images/P5/4.png" style="height: 220px; width: 390px;">
+                    <h3>Web Scrapping Automation</h3>
+                    <p>Fetch details through website, Speech Recognition for capcha filling and auto data entry with minimal interaction and high accuracy</p>
+                    <a href="#" class="btn view-project">View Project</a>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card"
+                     data-description="This project involved analyzing sales data using pandas for data manipulation and cleaning to uncover trends and opportunities. Visualizations were created with matplotlib and seaborn to effectively present the insights and patterns discovered in the data. Numpy was used for numerical computations and supporting data processing tasks."
+                     data-bullet-points='["Verified and adjusted data types for all columns before analysis","Performed thorough data cleaning prior to meeting project requirements","Developed multiple charts and KPIs using Python formulas and functions"]'
+                     data-skills='["Python", "Data Visualization", "Pandas", "NumPy", "Matplotlib", "Analysis", "ETL Process","KPIs"]'
+                     data-images='["images/P6/1.png", "images/P6/2.png", "images/P6/3.png", "images/P6/4.png", "images/P6/5.png","images/P6/6.png", "images/P6/7.png", "images/P6/8.png", "images/P6/9.png", "images/P6/10.png","images/P6/11.png", "images/P6/12.png", "images/P6/13.png", "images/P6/14.png", "images/P6/15.png"]'>
+                    <div class="tools-header">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <img src="images/P6/1.0.png" style="height: 230px; width: 390px;">
+
+                    <h3>Blinkit Data Analysis using Python</h3>
+                    <p>Basic data cleaning followed by visualization of sales trends and KPIs. This helps uncover key insights to drive better business decisions.</p>
+                    <a href="#" class="btn view-project">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content-wrapper">
+                <div class="carousel">
+                    <div class="carousel-images-container" id="carouselImages"></div>
+                </div>
+                <div class="modal-text">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
+                    <ul id="modalBulletPoints"></ul>
+                    <div class="skills-used">
+                        <strong>Skills Used:</strong>
+                        <div id="modalSkills"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Rajveersinh Zala. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        function revealContact() {
+  const discussSpan = document.getElementById("discussText");
+  discussSpan.innerHTML = `
+  📬<span onclick="copyText('rajveertheanalyst@gmail.com')">Mail</span> |
+    📞 <span onclick="copyText('+91 7698875787')">Contact No.</span>
+  `;
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text)
+    .then(function () {
+      // Show success toast notification
+      const toast = document.getElementById("toast");
+      toast.textContent = "You have successfully copied Rajveer's contact info!";
+      toast.className = "show"; // Show the toast
+
+      // Hide the toast after 3 seconds
+      setTimeout(function () {
+        toast.className = toast.className.replace("show", "");
+      }, 3000);
+    })
+    .catch(function (err) {
+      // Handle copy failure
+      const toast = document.getElementById("toast");
+      toast.textContent = "Failed to copy text: " + err;
+      toast.className = "show"; // Show the toast for failure
+
+      // Hide the toast after 3 seconds
+      setTimeout(function () {
+        toast.className = toast.className.replace("show", "");
+      }, 3000);
+    });
+}
+        
+        // JavaScript for Modal
+        const modal = document.getElementById("projectModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalBulletPoints = document.getElementById("modalBulletPoints");
+        const modalSkills = document.getElementById("modalSkills");
+        const carouselImages = document.getElementById("carouselImages");
+        const closeModal = document.querySelector(".close-modal");
+
+        // Function to show the modal with project details
+        function showModal(projectCard) {
+            const title = projectCard.querySelector("h3").textContent;
+            const description = projectCard.getAttribute("data-description");
+            const bulletPoints = JSON.parse(projectCard.getAttribute("data-bullet-points"));
+            const skills = JSON.parse(projectCard.getAttribute("data-skills"));
+            const images = JSON.parse(projectCard.getAttribute("data-images"));
+
+            // Populate modal content
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+
+            // Add bullet points
+            modalBulletPoints.innerHTML = "";
+            bulletPoints.forEach(point => {
+                const li = document.createElement("li");
+                li.textContent = point;
+                modalBulletPoints.appendChild(li);
+            });
+
+            // Add skills
+            modalSkills.innerHTML = "";
+            skills.forEach(skill => {
+                const span = document.createElement("span");
+                span.textContent = skill;
+                modalSkills.appendChild(span);
+            });
+
+            // Add images to carousel with vertical scroll
+            carouselImages.innerHTML = "";
+            images.forEach((image, index) => {
+                const img = document.createElement("img");
+                img.src = image;
+                img.alt = `Project Image ${index + 1}`;
+                carouselImages.appendChild(img);
+            });
+
+            // Show the modal
+            modal.style.display = "flex";
+        }
+
+        // Add event listeners to all "View Project" buttons
+        document.querySelectorAll(".view-project").forEach(button => {
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                const projectCard = button.closest(".project-card");
+                showModal(projectCard);
+            });
+            
+        });
+
+        // Close modal when clicking on the close button
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Close modal when clicking outside the modal content
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+    
+</body>
+</html> 
